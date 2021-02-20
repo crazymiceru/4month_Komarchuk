@@ -2,7 +2,7 @@
 
 namespace Hole
 {
-    public sealed class EnemySpeedSlow : EnemyController
+    internal sealed class EnemySpeedSlow : EnemyController
     {
         [Header("Slow Setup")]
         [SerializeField] private float _MaxSqrSpeed = 1f;

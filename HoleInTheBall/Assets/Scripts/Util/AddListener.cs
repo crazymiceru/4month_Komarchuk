@@ -1,18 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "Listener", menuName = "Add Listener", order = 51)]
 public class AddListener : ScriptableObject
 {
-    public delegate void Execute();
+    private event Action listeners;
 
-    private event Execute listeners;
-
-    public void RegisterListener(Execute listener)
+    public void RegisterListener(Action listener)
     {
         listeners+=listener;        
     }
 
-    public void UnregisterListener(Execute listener)
+    public void UnregisterListener(Action listener)
     {
         listeners-=listener;        
     }

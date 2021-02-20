@@ -2,49 +2,26 @@
 
 namespace Hole
 {
-    public class Unit : UnitInit
+    internal class Unit : UnitInit
     {
         #region Interactive
 
+
         private void OnTriggerEnter(Collider other)
         {
-            if (_isInteractive)
-            {
                 Interaction(other);
-            }
         }
 
-        protected void Interaction(Collider other)
+
+        protected virtual void Interaction(Collider other)
         {
-            if (other.gameObject.TryGetComponent(out Bonus bonus) && bonus.lives>0)
+            if (other.gameObject.TryGetComponent(out Unit unit) && unit.lives>0)
             {                
-                Debug.Log($"{gameObject.name} take {other.gameObject.name}");
-                switch (bonus.typeBonus)
-                {
-                    case TypeBonus.None:
-                        break;
-                    case TypeBonus.Heart:
-                        lives++;
-                        break;
-                    case TypeBonus.Coin:
-                        scores++;
-                        break;
-                    case TypeBonus.Poison:
-                        Attack();
-                        break;
-                    case TypeBonus.Invulnerability:
-                        Invulnerability(10);
-                        break;
-                    default:
-                        break;
-                }
-                Debug.Log($"Attack on {gameObject.name}");
-                bonus.Attack();                
             }
 
         }
 
-        protected void Invulnerability(float v)
+        internal void Invulnerability(float v)
         {
             Debug.Log($"Invulnerability time: {v}");
             _timeInvulnerability = Time.time + v;
@@ -57,7 +34,7 @@ namespace Hole
 
         internal virtual void Attack()
         {
-            Debug.Log($"наносим повреждения {gameObject.name}");
+            //Debug.Log($"наносим повреждения {gameObject.name}");
             if (_timeInvulnerability < Time.time)
             {
                 if (_unitData.timeInvulnerability > 0)

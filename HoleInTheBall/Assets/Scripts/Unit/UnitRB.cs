@@ -2,7 +2,7 @@
 
 namespace Hole
 {
-    public class UnitRB : Unit, IUnitComponentRBMove, IRotate
+    internal class UnitRB : Unit, IUnitComponentRBMove, IRotate
     {
         protected Rigidbody _rb;
         protected float _camRotate;

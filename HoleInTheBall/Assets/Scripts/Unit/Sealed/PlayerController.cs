@@ -2,7 +2,7 @@
 
 namespace Hole
 {
-    public sealed class PlayerController : UnitRB,IUnitComponentControlKeyboard, IUnitInvulnerability
+    internal sealed class PlayerController : UnitRB,IUnitComponentControlKeyboard, IUnitInvulnerability
     {
         [SerializeField] private GameObject _viewInvulnerability;
         [SerializeField] private IntVariable _liveGlobal;

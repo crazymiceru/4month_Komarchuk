@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Hole
 {
-    public class EnemyController : UnitRB, IUnitControlTraectory
+    internal class EnemyController : UnitRB, IUnitControlTraectory
     {
         [Header ("Traectory Move")]
         [SerializeField] private List<Traectory> _traectory;

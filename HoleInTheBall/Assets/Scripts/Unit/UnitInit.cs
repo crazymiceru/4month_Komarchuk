@@ -2,24 +2,34 @@
 
 namespace Hole
 {
-    public class UnitInit : MonoBehaviour
+    internal class UnitInit : MonoBehaviour
     {
+
         [SerializeField] protected UnitData _unitData;
-        [SerializeField] protected bool _isInteractive = false;
+        [SerializeField] private bool _isInteractive;
+        internal bool isInteractive
+        {
+            get
+            {
+                return _isInteractive;
+            }
+        }
+
         //Explosion position on unit
         [SerializeField] protected Transform _posExp;
         protected int _lives;
         protected int _scores;
-
         protected Transform _pos;
+
         public int lives
         {
+
             get
             {
                 return _lives;
             }
 
-            protected set
+            set
             {
                 _lives = value;
                 UpdateParameters();

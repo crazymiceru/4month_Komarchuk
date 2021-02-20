@@ -2,7 +2,7 @@
 
 namespace Hole
 {
-    public sealed class EnemyRocketLauncher : EnemyController, IEnemyEffects
+    internal sealed class EnemyRocketLauncher : EnemyController, IEnemyEffects
     {
         [Header("Rocket Setup")]
         [SerializeField] private Transform[] _startFirePos;

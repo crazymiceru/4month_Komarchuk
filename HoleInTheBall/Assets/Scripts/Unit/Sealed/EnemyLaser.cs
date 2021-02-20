@@ -2,7 +2,7 @@
 
 namespace Hole
 {
-    public sealed class EnemyLaser : EnemyController, IEnemyEffects
+    internal sealed class EnemyLaser : EnemyController, IEnemyEffects
     {
         [Header("Laser Setup")]
         [SerializeField] private LineRenderer _line;
@@ -20,7 +20,7 @@ namespace Hole
                 _line.SetPosition(1, new Vector3(0, 0, hit.distance+ _addLenghtLine));
                 if (hit.transform.gameObject.TryGetComponent(out Unit unit))
                 {
-                    Debug.Log($"атака {gameObject.name}");
+                    //Debug.Log($"атака {gameObject.name}");
                     unit.Attack();
                 }
             }

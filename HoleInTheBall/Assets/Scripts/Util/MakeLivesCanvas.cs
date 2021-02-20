@@ -34,6 +34,7 @@ namespace Hole
             {
                 var pref = Instantiate(_prefabHeart);
                 pref.transform.SetParent(transform);
+                pref.transform.localScale = Vector3.one;
                 var rt = pref.GetComponent<RectTransform>();
                 rt.localPosition = new Vector3(_posX + _step * _massLives.Count, _posY, 0);
                 _massLives.Add(pref);
