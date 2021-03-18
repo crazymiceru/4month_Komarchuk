@@ -24,3 +24,4 @@ MonoBehaviour:
   timeInvulnerability: 3
   AttackPower: 1
   addScores: 0
+  _imgIco: {fileID: 1060580768431347423, guid: 51a4858686f7e9649b6ac8e7a2a5e3c1, type: 3}

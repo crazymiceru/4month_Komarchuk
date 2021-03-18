@@ -144,7 +144,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 0.51
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &2216225113353356027
 SphereCollider:
@@ -172,7 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _typeItem: 100
-  _numCfg: 0
+  NumCfg: 0
+  _positionInfo: []
 --- !u!1 &2950824119075420645
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Util : MonoBehaviour
+public static class Util 
 {
 
     /// <summary>
@@ -31,7 +31,7 @@ public class Util : MonoBehaviour
         return StepFloat(value, endValue, step, step);
     }
 
-    static public Vector3 ClearVectorY(Vector3 v)
+    static public Vector3 ClearVectorY(this Vector3 v)
     {
         return new Vector3(v.x, 0, v.z);
     }

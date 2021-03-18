@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 50}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &150766168220841027
 CanvasRenderer:
@@ -93,10 +93,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
-  m_fontSizeBase: 55
+  m_fontSize: 32.65
+  m_fontSizeBase: 33
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -144,10 +144,10 @@ AudioSource:
   m_GameObject: {fileID: 150766168220841093}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5139090379653116181, guid: e5bd3829b4eec4c4bae6780ab59ad019, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4ba684912cd4a9740a5a68689481c755, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.787
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   powerMove: 500
   powerJump: 300
   minSqrDistance: 0.1
-  maxSpeed: 10
+  maxSpeed: 1
   maxY: 2.17
   maxLive: 1
   destroyEffects: {fileID: 856136027368556368, guid: 5614c8741ba97394db6e539512128826, type: 3}
@@ -24,3 +24,4 @@ MonoBehaviour:
   timeInvulnerability: 0
   AttackPower: 0
   addScores: 2
+  _imgIco: {fileID: 1060580768431347423, guid: b77636c9efe94414795de1cc71b56d65, type: 3}

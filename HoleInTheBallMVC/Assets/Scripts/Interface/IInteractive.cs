@@ -2,6 +2,6 @@
 {
     internal interface IInteractive
     {
-        void InInteractive(PackInteractiveData data);
+        void InInteractive(PackInteractiveData data,bool isEnter);
     }
 }

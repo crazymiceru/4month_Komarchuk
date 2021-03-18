@@ -1,59 +1,62 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Fps : MonoBehaviour
+namespace Hole
 {
-    #region Fields
 
-    [SerializeField] private int _freqUpdate = 50;
-    private Text _fpstxt=default;
-    private static Fps _f; 
-    public string  addTxt;
-    private float _fpszam;
-    private float _deltaTime = 0.0f;
-    private int _countFps;
-
-    #endregion
-
-
-    #region Init
-
-    private void Awake()
+    public class Fps : MonoBehaviour
     {
-        if (_f == null)
+        #region Fields
+
+        [SerializeField] private int _freqUpdate = 50;
+        private Text _fpstxt = default;
+        private static Fps _f;
+        public string addTxt;
+        private float _fpszam;
+        private float _deltaTime = 0.0f;
+        private int _countFps;
+
+        #endregion
+
+
+        #region Init
+
+        private void Awake()
         {
-            _f = this;
+            if (_f == null)
+            {
+                _f = this;
+            }
+            else if (_f != this)
+            {
+                Destroy(gameObject);
+            }
+            _fpstxt = GetComponent<Text>();
         }
-        else if (_f != this)
+
+        private void Start()
         {
-            Destroy(gameObject);
+            _countFps = 0;
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
         }
-        _fpstxt = GetComponent<Text>();
+
+        #endregion
+
+
+        #region Fps
+
+        private void Update()
+        {
+            _countFps++;
+            _deltaTime += (Time.unscaledDeltaTime - _deltaTime) * 0.1f;
+            _fpszam = 1.0f / _deltaTime;
+
+            if ((int)(_countFps / _freqUpdate) * _freqUpdate == _countFps)
+                
+                _fpstxt.text = $"{addTxt} fps:{_fpszam:N1} quality: {QualitySettings.GetQualityLevel()} tier: {Graphics.activeTier} Leak:{ControlLeak.Count} ListCntr:{ListControllers.countAddListControllers}";
+        }
+
+        #endregion
+
     }
-
-    private void Start()
-    {
-        _countFps = 0;
-    }
-
-    #endregion
-
-
-    #region Fps
-
-    private void Update()
-    {
-        _countFps++;
-        _deltaTime += (Time.unscaledDeltaTime - _deltaTime) * 0.1f;
-        _fpszam = 1.0f / _deltaTime;
-
-        if ((int)(_countFps / _freqUpdate) * _freqUpdate == _countFps)
-            _fpstxt.text = $"{addTxt} fps:{_fpszam:N1} quality: {QualitySettings.GetQualityLevel()} tier: {Graphics.activeTier}";
-    }
-
-    #endregion
-
 }

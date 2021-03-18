@@ -110,7 +110,7 @@ LineRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5721898527207688071}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 0
@@ -152,8 +152,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.04315567
-        value: 0.19619751
+        time: 0.044620514
+        value: 0.03161621
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -250,6 +250,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _typeItem: 200
   _numCfg: 0
+  _positionInfo:
+  - {fileID: 188268052541152935}
+  - {fileID: 6806422425065216215}
 --- !u!136 &9364060703465337
 CapsuleCollider:
   m_ObjectHideFlags: 0

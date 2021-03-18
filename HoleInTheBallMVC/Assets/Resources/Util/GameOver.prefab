@@ -93,10 +93,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
+  m_fontSize: 49.1
   m_fontSizeBase: 55
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -144,10 +144,10 @@ AudioSource:
   m_GameObject: {fileID: 6175160443673204390}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -5139090379653116181, guid: e5bd3829b4eec4c4bae6780ab59ad019, type: 2}
   m_audioClip: {fileID: 8300000, guid: 509e6c92e1044bc4b8a110a5bfab025f, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.943
   m_Pitch: 1
   Loop: 1
   Mute: 0

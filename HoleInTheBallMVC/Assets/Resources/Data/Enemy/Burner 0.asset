@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbcb080e2d9fe042bacd32a5d433bb0, type: 3}
+  m_Name: Burner 0
+  m_EditorClassIdentifier: 
+  powerMove: 500
+  powerJump: 300
+  minSqrDistance: 1
+  maxSpeed: 10
+  maxY: 2.17
+  maxLive: 0
+  destroyEffects: {fileID: 856136027368556368, guid: 5614c8741ba97394db6e539512128826, type: 3}
+  addPosDestroyEffects: {x: 0, y: 0, z: 0}
+  timeViewDestroyEffects: 10
+  timeInvulnerability: 0
+  AttackPower: 1
+  addScores: 0
+  _imgIco: {fileID: 1060580768431347423, guid: c4fa504947c49a049b0901e0d5eaf230, type: 3}
