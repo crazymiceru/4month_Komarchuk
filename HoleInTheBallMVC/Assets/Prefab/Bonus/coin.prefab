@@ -123,4 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _typeItem: 2
-  _numCfg: 0
+  NumCfg: 0
+  _positionInfo: []
+  _track: []

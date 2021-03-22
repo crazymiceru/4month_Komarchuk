@@ -21,7 +21,6 @@ namespace Hole
         {
             Debug.Log($"Init Radar");
             _player = Reference.inst.Player.transform;
-            Debug.Log($"Player pos:{_player}");
 
             _angleCam = Reference.inst.MainCamera.transform.rotation.eulerAngles.y;
             _posRadar = GameObject.FindGameObjectWithTag("Radar").transform;

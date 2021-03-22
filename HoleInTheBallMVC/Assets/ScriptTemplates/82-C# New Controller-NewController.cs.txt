@@ -1,0 +1,24 @@
+using UnityEngine;
+
+#ROOTNAMESPACEBEGIN#
+
+    internal sealed class #SCRIPTNAME# : IController
+    {
+        UnitM _unit;
+        private UnitView _unitView;
+        private ControlLeak _controlLeak = new ControlLeak("");
+
+        internal #SCRIPTNAME#(UnitM unit, UnitView unitView)
+        {
+            _unit = unit;
+            _unitView = unitView;
+            _unit.evtKill += Kill;
+        }
+
+        void Kill()
+        {
+            ListControllers.inst.Delete(this);
+        }
+    }
+
+#ROOTNAMESPACEEND#
