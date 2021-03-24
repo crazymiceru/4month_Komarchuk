@@ -7,7 +7,7 @@ namespace Hole
         private UnitM _unit;
         private UnitFireExtData _unitFireData;
         private UnitView _unitView;
-        private Rigidbody _rb;
+        private Rigidbody _rigidBody;
         private Light _lgt;
         private GameObject _particles;
         private float _powerLight = 1;
@@ -26,8 +26,8 @@ namespace Hole
 
         public void Initialization()
         {
-            _rb = _unitView.GetComponent<Rigidbody>();
-            if (_rb == null) Debug.Assert(true, $"Missing Rigidbody on {_unitView.name}");
+            _rigidBody = _unitView.GetComponent<Rigidbody>();
+            if (_rigidBody == null) Debug.Assert(true, $"Missing Rigidbody on {_unitView.name}");
 
             _lgt = _unitView.PositionInfo[0].gameObject.GetComponent<Light>();
             if (_lgt == null) Debug.Assert(true, $"Missing Get Light on {_unitView.name}");

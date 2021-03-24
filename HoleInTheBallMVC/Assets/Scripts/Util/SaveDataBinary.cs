@@ -3,6 +3,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace Hole
 {
@@ -19,18 +20,18 @@ namespace Hole
             _formatter.SurrogateSelector = surrogateSelector;
         }
 
-        public T Load<T>(string name)
+        public List<T> Load<T>(string name)
         {
-            T result;
-            if (!File.Exists(name)) return default(T);
+            List<T> result;
+            if (!File.Exists(name)) return default(List<T>);
             using (var fs = new FileStream(name, FileMode.Open))
             {
-                result = (T)_formatter.Deserialize(fs);
+                result = (List<T>)_formatter.Deserialize(fs);
             }
             return result;
         }
 
-        public void Save<T>(T data, string name)
+        public void Save<T>(List<T> data, string name)
         {
             if (data == null && !String.IsNullOrEmpty(name)) return;
             if (!typeof(T).IsSerializable)

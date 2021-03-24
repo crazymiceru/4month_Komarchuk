@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -25,14 +26,14 @@ namespace Hole
             return fullName;
         }
 
-        public void Save<T>(T data, string name = null)
+        public void Save<T>(List<T> data, string name = null)
         {
             var fullName = MakeFullName(name);
             Debug.Log($"save path: {fullName}");
             save.Save(data, fullName);
         }
 
-        public T Load<T>(string name)
+        public List<T> Load<T>(string name)
         {
             var fullName = MakeFullName(name);
             Debug.Log($"load path: {fullName}");

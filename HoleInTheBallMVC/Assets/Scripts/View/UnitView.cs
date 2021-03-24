@@ -11,20 +11,14 @@ namespace Hole
         internal event Action<PackInteractiveData,bool> evtInInteractive = delegate { };
         internal event Action evtAnyCollision = delegate { };
 
-        private Rigidbody _rb;
         [SerializeField] private TypeItem _typeItem;
-        [SerializeField] internal int NumCfg=0;
+        [SerializeField] private int _numCfg=0;
         [SerializeField] private Transform[] _positionInfo;
         private Dictionary<int, int> _listOntriggerEnter = new Dictionary<int, int>();
 
         internal Transform[] PositionInfo
         {
-            get => _positionInfo;
-        }
-
-        private void Awake()
-        {
-            _rb = GetComponent<Rigidbody>();
+            get => _positionInfo;            
         }
 
         private void OnTriggerEnter(Collider other)
@@ -65,9 +59,15 @@ namespace Hole
             Destroy(gameObject);
         }
 
-        public (TypeItem,int) GetTypeItem()
+        public (TypeItem type,int cfg) GetTypeItem()
         {
-            return (_typeItem,NumCfg);
+            return (_typeItem,_numCfg);
+        }
+        public void SetTypeItem(TypeItem type=TypeItem.None,int cfg=-1)
+        {
+            if (cfg == -1) cfg = _numCfg;
+            if (type == TypeItem.None) type = _typeItem;
+            _typeItem = type;_numCfg = cfg;
         }
 
         void IInteractive.InInteractive(PackInteractiveData data,bool isEnter)

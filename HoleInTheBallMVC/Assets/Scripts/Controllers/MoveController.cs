@@ -8,7 +8,7 @@ namespace Hole
         private UnitM _unit;
         private UnitView _unitView;
         private UnitData _unitData;
-        private Rigidbody _rb;
+        private Rigidbody _rigidBody;
         private ControlLeak _controlLeak = new ControlLeak("Move");
 
         internal MoveController(UnitM unit, UnitView unitView, UnitData unitData)
@@ -27,16 +27,16 @@ namespace Hole
 
         public void Initialization()
         {
-            _rb = _unitView.GetComponent<Rigidbody>();
+            _rigidBody = _unitView.GetComponent<Rigidbody>();
         }
 
         public void Execute(float deltaTime)
         {
             if (_unit.control != null)
             {
-                if (_rb != null)
+                if (_rigidBody != null)
                 {
-                    _rb.AddForce(_unit.control * _unitData.powerMove * deltaTime * _rb.mass);
+                    _rigidBody.AddForce(_unit.control * _unitData.powerMove * deltaTime * _rigidBody.mass);
                 }
                 else
                 {
@@ -49,16 +49,16 @@ namespace Hole
 
         internal void LimitMove(float maxSpeed, float maxY)
         {
-            if (_rb != null)
+            if (_rigidBody != null)
             {
                 var maxSqrSpeed = maxSpeed * maxSpeed;
-                if (_rb.velocity.sqrMagnitude > maxSqrSpeed)
+                if (_rigidBody.velocity.sqrMagnitude > maxSqrSpeed)
                 {
-                    _rb.velocity = _rb.velocity.normalized * maxSpeed;
+                    _rigidBody.velocity = _rigidBody.velocity.normalized * maxSpeed;
                 }
-                if (_unitView.transform.position.y > maxY && _rb.velocity.y > 0)
+                if (_unitView.transform.position.y > maxY && _rigidBody.velocity.y > 0)
                 {
-                    _rb.velocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
+                    _rigidBody.velocity = new Vector3(_rigidBody.velocity.x, 0, _rigidBody.velocity.z);
                 }
             }
         }

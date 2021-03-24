@@ -2,6 +2,6 @@
 {
     internal interface IUnit
     {
-        (TypeItem,int) GetTypeItem();
+        (TypeItem type, int cfg) GetTypeItem();
     }
 }

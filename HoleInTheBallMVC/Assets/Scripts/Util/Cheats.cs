@@ -162,21 +162,38 @@ namespace Hole
 
         private void MakeSaveGame()
         {
-            var obj = Reference.inst.Player.GetComponent<IUnit>();
-            (var typeIn, var cfg) = obj.GetTypeItem();
-            var go = Reference.inst.Player;
+            var dataMas = ListControllers.inst.Save();
+            Debug.Log($"dataMas:{dataMas.Count}");
+            SaveDataRepository.inst.Save(dataMas, "all.sav");
+        }
 
-            DataGameForSave data = new DataGameForSave { type = typeIn, pos = go.transform.position,hp=Reference.inst.playerData.HP};
-            SaveDataRepository.inst.Save(data, "player.sav");            
+        private void DestroyObjectsForLoad()
+        {
+            ListControllers.inst.Destroy(TypeItem.Coin);
+            ListControllers.inst.Destroy(TypeItem.BonusHeart);
+            ListControllers.inst.Destroy(TypeItem.BonusInv);
+            ListControllers.inst.Destroy(TypeItem.BonusPoison);
         }
 
         private void MakeLoadGame()
         {
-            DataGameForSave data;
-            data = SaveDataRepository.inst.Load<DataGameForSave>("player.sav");
-            Debug.Log($"Load Type:{data.type}");
-            Reference.inst.Player.transform.position = data.pos;
-            Reference.inst.playerData.HP = data.hp;
+
+            var dataMassive = SaveDataRepository.inst.Load<DataGameForSave>("all.sav");
+            Debug.Log($"dataMassive count:{dataMassive.Count}");
+
+            DestroyObjectsForLoad();
+
+            for (int i = 0; i < dataMassive.Count; i++)
+            {
+                if (dataMassive[i].type != TypeItem.Player)
+                {
+                    FabricUnit.inst.CreateUnit(dataMassive[i].type, dataMassive[i].pos, Quaternion.identity, dataMassive[i].numCfg, data: dataMassive[i]);
+                }
+                else
+                {
+                    Reference.inst.saveController.Load(dataMassive[i]);
+                }
+            }
         }
 
         private void SetQuality(int value)

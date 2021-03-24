@@ -11,6 +11,7 @@ namespace Hole
         public float powerMove = 500f;
         public float powerJump = 300f;
         public float minSqrDistance = 0.2f;
+        public bool selfGuided = false;
 
         [Header("Limits")]
         public float maxSpeed = 10;

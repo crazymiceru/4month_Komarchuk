@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -8,16 +9,18 @@ namespace Hole
     {
         private UnitM _unit;
         private ControlLeak _controlLeak = new ControlLeak("Congratulations");
+        private int _maxScores;
 
-        internal CongratulationsController(UnitM unit)
+        internal CongratulationsController(UnitM unit,int maxScores)
         {
             _unit = unit;
             _unit.evtScores += CompareScores;
+            _maxScores = maxScores;
         }
 
         void CompareScores()
         {
-            if (_unit.Scores > 10)
+            if (_unit.Scores > _maxScores)
             {
                 Debug.Log($"Win");
                 var go = DataObjects.inst.GetValue<GameObject>("Util/Congratulations");

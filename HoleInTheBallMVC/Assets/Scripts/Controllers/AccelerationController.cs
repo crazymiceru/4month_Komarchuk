@@ -7,7 +7,7 @@ namespace Hole
         private UnitM _unit;
         private UnitAccelerationData _unitAccelerationData;
         private UnitView _unitView;
-        private Rigidbody _rb;
+        private Rigidbody _rigidBodyb;
         private float startTime;
         private Collider[] _col;
         private bool isCollidersEnable = true;
@@ -16,10 +16,7 @@ namespace Hole
 
         internal AccelerationController(UnitM unit, UnitView unitView, UnitAccelerationData unitAccelerationData)
         {
-
-            
-
-        _unit = unit;
+            _unit = unit;
             _unitView = unitView;
             _unitAccelerationData = unitAccelerationData;
             _unit.evtKill += Kill;
@@ -28,8 +25,8 @@ namespace Hole
 
         public void Initialization()
         {
-            _rb = _unitView.GetComponent<Rigidbody>();
-            if (_rb == null)
+            _rigidBodyb = _unitView.GetComponent<Rigidbody>();
+            if (_rigidBodyb == null)
             {
                 Debug.Assert(true, $"Missing Rigidbody on {_unitView.name}");
             }
@@ -37,8 +34,8 @@ namespace Hole
             _col = _unitView.GetComponentsInChildren<Collider>();
             if (_unitAccelerationData.timeWithoutCollision > 0) EnableColliders(false);
 
-            _rb.AddForce(_unitView.transform.forward * _unitAccelerationData.startSpeed);
-            startTime = Time.time;            
+            _rigidBodyb.AddForce(_unitView.transform.forward * _unitAccelerationData.startSpeed);
+            startTime = Time.time;
         }
 
         private void EnableColliders(bool isEnable)
@@ -59,7 +56,7 @@ namespace Hole
         public void Execute(float deltaTime)
         {
             //Debug.Log($"Rocket Execute");
-            _rb.AddForce(_unitView.transform.forward * _unitAccelerationData.addSpeed * deltaTime);
+            _rigidBodyb.AddForce(_unitView.transform.forward * _unitAccelerationData.addSpeed * deltaTime);
             if (!isCollidersEnable && startTime + _unitAccelerationData.timeWithoutCollision < Time.time) EnableColliders(true);
         }
 

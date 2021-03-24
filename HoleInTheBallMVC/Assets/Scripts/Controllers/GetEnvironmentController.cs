@@ -12,7 +12,7 @@ namespace Hole
         private UnitView _unitView;
         private ControlLeak _controlLeak = new ControlLeak("GetEnvironment");
         private Dictionary<TypeItem, List<EnvironmentData>> _listEnv = new Dictionary<TypeItem, List<EnvironmentData>>();
-        private Rigidbody _rb;
+        private Rigidbody _rigidBody;
         private Dictionary<TypeItem, Action<EnvironmentData>> _listProcedure;
 
         internal GetEnvironmentController(UnitM unit, UnitView unitView)
@@ -21,7 +21,7 @@ namespace Hole
             _unitView = unitView;
             _unit.evtKill += Kill;
             _unitView.evtInInteractive += InInteractive;
-            _rb = unitView.GetComponent<Rigidbody>();
+            _rigidBody = unitView.GetComponent<Rigidbody>();
 
             _listProcedure = new Dictionary<TypeItem, Action<EnvironmentData>>
             {
@@ -68,12 +68,12 @@ namespace Hole
 
         private void EnvSlow(EnvironmentData environmentData)
         {
-            if (_rb.velocity.sqrMagnitude > environmentData.maxSqrSlowSpeed) _rb.velocity = _rb.velocity.normalized * environmentData.maxSqrSlowSpeed;
+            if (_rigidBody.velocity.sqrMagnitude > environmentData.maxSqrSlowSpeed) _rigidBody.velocity = _rigidBody.velocity.normalized * environmentData.maxSqrSlowSpeed;
         }
 
         private void EnvCollapse(EnvironmentData environmentData)
         {
-            _rb.velocity = _rb.velocity + _rb.velocity.normalized * environmentData.powerCollapseSpeed * Time.deltaTime;
+            _rigidBody.velocity = _rigidBody.velocity + _rigidBody.velocity.normalized * environmentData.powerCollapseSpeed * Time.deltaTime;
         }
 
         #endregion

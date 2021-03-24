@@ -2,7 +2,7 @@
 
 namespace Hole
 {
-    internal sealed class UnitController :IController,IInitialization
+    internal sealed class UnitController : IController, IInitialization,IDestroy
     {
         private UnitM _unit;
         private UnitView _unitView;
@@ -18,15 +18,15 @@ namespace Hole
             _unitView = unitView;
             _unitData = unitData;
 
-            _unit.evtKill += _unitView.Kill;            
+            _unit.evtKill += _unitView.Kill;
             _unit.evtKill += Kill;
             _unitView.evtInInteractive += InInteractive;
             _unitView.evtOutInteractive += OutInteractive;
             _unit.evtDecLives += DecLive;
 
             _unit.packInteractiveData.attackPower = _unitData.AttackPower;
-            _unit.packInteractiveData.scores = _unitData.addScores;            
-            var (typeItem,b)= _unitView.GetTypeItem();
+            _unit.packInteractiveData.scores = _unitData.addScores;
+            var (typeItem, b) = _unitView.GetTypeItem();
             _unit.packInteractiveData.typeItem = typeItem;
         }
 
@@ -35,28 +35,36 @@ namespace Hole
         {
             _unit.Scores = 0;
             _unit.HP = _unitData.maxLive;
-            if (_unitData.imgIco!=null) Reference.inst.radarController.AddPoint(_unitView.gameObject, _unitData.imgIco);
+            if (_unitData.imgIco != null) Reference.inst.radarController.AddPoint(_unitView.gameObject, _unitData.imgIco);
         }
 
-        void Kill()
+        #endregion
+
+
+        #region Game
+
+        private void Kill()
         {
             if (_unitData.imgIco != null) Reference.inst.radarController.DelPoint(_unitView.gameObject);
             ListControllers.inst.Delete(this);
         }
 
-        #endregion
+        public void Destroy(TypeItem type = 0)
+        {
+            if (type == 0 || type == _unitView.GetTypeItem().type) _unit.HPSetInvis = 0;
+        }
 
         private void DecLive()
         {
-            if (_unitData.destroyEffects!=null)
+            if (_unitData.destroyEffects != null)
             {
-                var go = GameObject.Instantiate(_unitData.destroyEffects, _unitView.transform.position+_unitData.addPosDestroyEffects,Quaternion.identity);
+                var go = GameObject.Instantiate(_unitData.destroyEffects, _unitView.transform.position + _unitData.addPosDestroyEffects, Quaternion.identity);
                 GameController.SetTrash(go);
                 GameObject.Destroy(go, _unitData.timeViewDestroyEffects);
             }
         }
 
-        private void InInteractive(PackInteractiveData pack,bool isEnter)
+        private void InInteractive(PackInteractiveData pack, bool isEnter)
         {
             if (isEnter)
             {
@@ -65,9 +73,11 @@ namespace Hole
             }
         }
 
-        private void OutInteractive(IInteractive ui,bool isEnter)
-        {                        
+        private void OutInteractive(IInteractive ui, bool isEnter)
+        {
             ui.InInteractive(_unit.packInteractiveData, isEnter);
         }
+
+        #endregion
     }
 }

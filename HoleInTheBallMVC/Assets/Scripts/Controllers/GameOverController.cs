@@ -13,25 +13,28 @@ namespace Hole
         internal GameOverController(UnitM unit)
         {
             _unit = unit;
-            _unit.evtKill += GameOver;
+            _unit.evtDecLives += GameOver;
         }
 
         void GameOver()
         {
-            Debug.Log($"Game Over");
-            var go = DataObjects.inst.GetValue<GameObject>("Util/GameOver");
-            GameObject.Instantiate(go, Reference.inst.canvas.transform);
-            var goRestart = DataObjects.inst.GetValue<GameObject>("Util/Restart");
-            var goRestartInst=GameObject.Instantiate(goRestart, Reference.inst.canvas.transform);
-
-            var button = goRestartInst.GetComponent<Button>();
-            if (button != null)
+            if (_unit.HP == 0)
             {
-                button.onClick.AddListener(delegate { Restart(); });
+                Debug.Log($"Game Over");
+                var go = DataObjects.inst.GetValue<GameObject>("Util/GameOver");
+                GameObject.Instantiate(go, Reference.inst.canvas.transform);
+                var goRestart = DataObjects.inst.GetValue<GameObject>("Util/Restart");
+                var goRestartInst = GameObject.Instantiate(goRestart, Reference.inst.canvas.transform);
+
+                var button = goRestartInst.GetComponent<Button>();
+                if (button != null)
+                {
+                    button.onClick.AddListener(delegate { Restart(); });
+                }
+
+                _unit.evtKill -= GameOver;
+                Time.timeScale = 0;
             }
-            
-            _unit.evtKill -= GameOver;
-            Time.timeScale = 0;
         }
 
         void Restart()
@@ -39,6 +42,5 @@ namespace Hole
             Debug.Log($"Restart");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-
     }
 }

@@ -59,6 +59,10 @@ namespace Hole
                 }
                 _posBackGround.localPosition = Quaternion.Euler(0, 0, _angleCam) * (new Vector3(-_player.position.x, -_player.position.z, 0) * scaleRadar);
             }
+            else
+            {
+                _player = Reference.inst.Player.transform;
+            }
         }
 
         private void SetPoint(RadarPoint point)

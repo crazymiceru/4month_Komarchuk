@@ -17,6 +17,21 @@ namespace Hole
         private ControlLeak _controlLeak = new ControlLeak("UnitMData");
 
         internal int _hp = -1;
+
+        public int HPSetInvis
+        {
+            set
+            {
+                _hp = value;
+                evtLives.Invoke();
+                if (_hp <= 0)
+                {
+                    _hp = 0;
+                    evtKill();
+                }
+            }
+        }
+        
         public int HP
         {
             get => _hp;

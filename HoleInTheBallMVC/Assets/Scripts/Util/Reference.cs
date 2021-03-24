@@ -12,6 +12,8 @@ namespace Hole
         private GameObject _goInvulnerAbility;
         private ControlLeak _controlLeak = new ControlLeak("Reference");
 
+        internal SaveController saveController;
+
         internal Reference()
         {
             inst = this;

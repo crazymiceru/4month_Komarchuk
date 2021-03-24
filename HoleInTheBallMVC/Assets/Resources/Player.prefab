@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8326562287133787958}
   - component: {fileID: 8326562287133787957}
   - component: {fileID: 8326562287133787956}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Invulnerability
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 8326562287766358748}
   - component: {fileID: 8326562287766358723}
   - component: {fileID: 8326562286336231695}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -235,7 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b286c163ee1cb04a8e6f8cff05f7293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seed: -3664
   _typeItem: 1
-  _numCfg: 0
+  NumCfg: 0
   _positionInfo:
   - {fileID: 8326562287133787955}
